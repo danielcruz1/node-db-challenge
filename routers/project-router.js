@@ -58,5 +58,14 @@ router.post('/:id/tasks', async(req,res,next) => {
     }
   })
 
+  router.post('/', async (req, res, next) => {
+    try {
+        const id = await project.addResource(req.body)
+        res.status(201).json(await project.findById(id))
+    }
+    catch(err) {
+        next(err)
+    }
+})
 
 module.exports = router 

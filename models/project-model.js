@@ -22,10 +22,15 @@ function addTask(payload) {
     return db.insert('task').insert(payload)
 }
 
+async function addResource(data) {
+    return db("resources").insert(data)
+} 
+
 module.exports ={
     find,
     getTask,
     getResource,
     addProject,
-    addTask
+    addTask,
+    addResource
 } 
