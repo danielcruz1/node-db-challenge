@@ -11,7 +11,7 @@ router.get('/', async(req,res,next)=>{
       res.json(project)
     }
     catch(err){
-        next(err)
+      next(err)
     }
   })
 
@@ -27,45 +27,45 @@ router.get('/:id/tasks', async(req,res,next) => {
 
 router.get('/:id/resources', async(req,res,next) => {
     try {
-      const { id } = req.params
-      res.json(await projects.getResource(id))
-    }
-    catch(err){
-      next(err)
-    }
-  })
-
-router.post('/', async(req,res,next) => {
-    try {
-        const payload = {
-            name: req.body.name
-        }
-        await projects.addProject(payload);
+    const { id } = req.params
+    res.json(await projects.getResource(id))
     }
     catch(err) {
       next(err)
     }
   })
 
-router.post('/:id/tasks', async(req,res,next) => {
-    try {
-        const payload = req.body
-        await projects.addTask(payload)
-        res.json({ message: "successfully added" })
-    }
-    catch(err) {
-      next(err)
-    }
-  })
 
-  router.post('/', async (req, res, next) => {
-    try {
-        const id = await project.addResource(req.body)
-        res.status(201).json(await project.findById(id))
-    }
-    catch(err) {
-        next(err)
-    }
+router.post('/', async (req, res, next) => {
+  try {
+    const id = await projects.addProject(req.body)
+    res.status(201).json({ message: 'Success!'})
+  }
+  catch(err) {
+    next(err)
+  }
+})
+
+
+router.post('/:id/tasks', async (req, res, next) => {
+  try {
+    const id = await projects.addTask(req.body)
+    res.status(201).json({ message: 'Success!'})
+  }
+  catch(err) {
+    next(err)
+  }
+})
+
+
+router.post('/:id/resources', async (req, res, next) => {
+  try {
+    const id = await projects.addResource(req.body)
+    res.status(201).json({ message: 'Success!'})
+  }
+  catch(err) {
+    next(err)
+  }
 })
 
 module.exports = router 

@@ -14,12 +14,12 @@ function getResource(project_id) {
 }
 
 function addProject(payload) {
-    return db.insert('projects').insert(payload)
+    return db('projects').insert(payload)
 }
 
 
 function addTask(payload) {
-    return db.insert('task').insert(payload)
+    return db('task').insert(payload)
 }
 
 async function addResource(data) {
